@@ -3,7 +3,7 @@ import EditTask from './EditTask';
 import AssignTask from './AssignTask';
 import axiosInstance from './axiosConfig';
 import { useState } from 'react';
-import { globalContext } from '../../context/GlobalContext';
+import { UserContext } from '../context/UserContext';
 
 
 const TaskItem = ({ task }) => {
@@ -53,13 +53,13 @@ const TaskItem = ({ task }) => {
                 <p>{task.description}</p>
                 <p>Status: {task.status}</p>
 
-                {req.user.role === 'admin' || req.user.role === 'manager' ? (
+                {(user && (user.role === 'admin' || user.role === 'manager')) && (
                     <> {/* Fragment for grouping */}
                         <button key={task._id + '-edit'} onClick={handleEditClick}>Edit</button>
                         <button key={task._id + '-assign'} onClick={handleAssignClick}>Assign</button>
                         <button key={task._id + '-delete'} onClick={handleDeleteClick}>Delete</button>
                     </>
-                ) : null}
+                )}
 
                 {isEditModalOpen && (
                     <EditTask taskId={task._id} onEditComplete={handleEditClose} />

@@ -4,6 +4,7 @@ import Login from './components/Login';
 import Register from './components/Register';
 import Tasks from './components/Tasks';
 import PrivateRoute from './components/PrivateRoute';
+import { GlobalProvider } from './context/UserState';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false); // Just for this example
